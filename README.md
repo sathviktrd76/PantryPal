@@ -2,7 +2,7 @@
 
 # 🥫 PantryPal
 
-**A simple console-based pantry management application built with Java.**
+**A console-based pantry management application built with Java.**
 
 </div>
 
@@ -12,7 +12,6 @@
 
 ![Java](https://img.shields.io/badge/Java-17%2B-orange?style=flat-square\&logo=openjdk)
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=flat-square)
-![Version](https://img.shields.io/badge/Version-1.0-blue?style=flat-square)
 
 </div>
 
@@ -20,41 +19,39 @@
 
 ## 📌 About
 
-**PantryPal** is a console-based Java application designed to manage pantry items efficiently.
+PantryPal is a simple console-based application for managing pantry items.
 
-The project is being developed as a practical way to apply Java programming, Object-Oriented Programming, collections, exception handling, and file handling concepts in a single application.
+The project is built to apply Java fundamentals and Object-Oriented Programming concepts through a practical application while gradually introducing collections, exception handling, and file handling.
 
 ---
 
 ## ✨ Features
 
-* ➕ Add pantry items
-* 📋 View all pantry items
-* 🔍 Search items by ID or name
-* ✏️ Update item details
-* 🗑️ Remove pantry items
-* 📦 Check low-stock items
-* 📅 Check expired and soon-to-expire items
-* 💾 Save pantry data to a file
-* 📂 Load pantry data from a file
-* ⚠️ Handle invalid input and application errors
+* Add pantry items
+* View all pantry items
+* Search items by ID or name
+* Update item details
+* Remove pantry items
+* Check low-stock items
+* Check expired and soon-to-expire items
+* Save pantry data to a file
+* Load pantry data from a file
+* Handle invalid input and application errors
 
 ---
 
-## 🛠️ Concepts Used
+## 🛠️ Concepts
 
-<div align="center">
+| Area                   | Concepts                                                              |
+| ---------------------- | --------------------------------------------------------------------- |
+| **Java Fundamentals**  | Variables, Data Types, Operators, Conditions, Loops, Methods, Strings |
+| **OOP**                | Classes, Objects, Constructors, Encapsulation                         |
+| **Collections**        | ArrayList, Generics, Iteration                                        |
+| **Exception Handling** | try-catch, finally, throw, throws, Custom Exceptions                  |
+| **File Handling**      | Reading, Writing, Data Persistence                                    |
+| **Date & Validation**  | LocalDate, Date Comparison, Input Validation                          |
 
-| Area                   | Concepts                                                                              |
-| ---------------------- | ------------------------------------------------------------------------------------- |
-| **Java Fundamentals**  | Variables, Data Types, Operators, Loops, Conditions, Methods                          |
-| **OOP**                | Classes, Objects, Constructors, Encapsulation, Inheritance, Polymorphism, Abstraction |
-| **Collections**        | ArrayList, Generics, Iteration                                                        |
-| **Exception Handling** | try-catch, finally, throw, throws, Custom Exceptions                                  |
-| **File Handling**      | Reading, Writing, Data Persistence                                                    |
-| **Date & Validation**  | LocalDate, Date Comparison, Input Validation                                          |
-
-</div>
+> OOP concepts such as inheritance, polymorphism, and abstraction are part of the learning scope and may be introduced where they fit naturally into the project.
 
 ---
 
@@ -75,23 +72,23 @@ PantryPal/
 └── README.md
 ```
 
-> The project structure may evolve as new features and concepts are introduced.
+The structure may evolve as the project develops.
 
 ---
 
 ## ▶️ How to Run
 
-### 1. Clone the repository
+### Clone the repository
 
 ```bash
 git clone <repository-url>
 ```
 
-### 2. Open the project
+### Open the project
 
 Open the project in an IDE such as IntelliJ IDEA, Eclipse, or VS Code.
 
-### 3. Compile and run
+### Run the application
 
 Run:
 
@@ -99,33 +96,32 @@ Run:
 Main.java
 ```
 
-Follow the options displayed in the console.
+The application can then be operated through the console menu.
 
 ---
 
-## 🗓️ Development Progress
+## 📈 Development Progress
 
-PantryPal V1 is being developed incrementally while learning and applying Java concepts.
+PantryPal is being developed incrementally.
 
-| Phase       | Focus                                   |
-| ----------- | --------------------------------------- |
-| **Phase 1** | Java Fundamentals & Project Setup       |
-| **Phase 2** | OOP & ArrayList                         |
-| **Phase 3** | CRUD Operations & Exception Handling    |
-| **Phase 4** | File Handling, Validation & Integration |
+| Stage | Focus                                |
+| ----- | ------------------------------------ |
+| **1** | Java Fundamentals & Project Setup    |
+| **2** | OOP & ArrayList                      |
+| **3** | CRUD Operations & Exception Handling |
+| **4** | File Handling & Validation           |
+| **5** | Testing & Final Improvements         |
 
 ---
 
 ## 🔮 Future Plans
 
-**PantryPal V2** will extend the project into a JavaFX-based desktop application with an improved user interface and additional functionality.
+A future version of PantryPal may include a JavaFX-based desktop interface and additional functionality.
 
 ---
 
 <div align="center">
 
-### Built with ☕ Java
-
-**PantryPal — Learn • Build • Improve**
+**Java • OOP • Collections • File Handling**
 
 </div>
