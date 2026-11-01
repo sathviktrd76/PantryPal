@@ -79,6 +79,10 @@ PantryManager  ShoppingList  RecipeSuggestion
 
 ```text
 PantryPal/
+│
+├── .gitignore
+├── pom.xml
+│
 ├── Main.java
 ├── PantryItem.java
 ├── ShoppingListItem.java
@@ -86,15 +90,29 @@ PantryPal/
 ├── ShoppingListManager.java
 ├── RecipeSuggestionService.java
 ├── FileManager.java
+│
 ├── SwingMain.java
 ├── JavaFXMain.java
 ├── DashboardController.java
+│
 ├── dashboard.fxml
 ├── styles.css
+│
+├── README.md
+├── README.html
+├── README.css
+├── README.js
+│
 ├── pantrypal-logo.png
 ├── pantry.txt
 ├── shopping_list.txt
-└── README.md
+│
+└── screenshots/
+    ├── dashboard.png
+    ├── pantry.png
+    ├── shopping-list.png
+    ├── recipes.png
+    └── swing-interface.png
 ```
 
 ## 🖥️ Application Screenshots
