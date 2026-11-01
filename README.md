@@ -25,7 +25,7 @@ Both interfaces use a shared backend and file-based storage.
 
 ## 🎓 Academic Project
 
-PantryPal is developed as an **End-Semester Academic Project** as part of the Bachelor of Technology (B.Tech) programme in Computer Science and Engineering (Artificial Intelligence & Machine Learning) in 3rd Semester at CMR University.
+PantryPal is developed as an **End-Semester Academic Project** as part of the Bachelor of Technology (B.Tech) programme in Computer Science and Engineering (Artificial Intelligence & Machine Learning) in **3rd Semester** at CMR University.
 
 The project focuses on applying Java programming concepts, Object-Oriented Programming (OOP), file handling, and graphical user interface development to build a practical and user-friendly pantry management application.
 
