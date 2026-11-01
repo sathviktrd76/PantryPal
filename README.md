@@ -223,7 +223,7 @@ The application has been tested for:
 
 **Domain:** Java Application Development
 
-**Project Type:** End-Semester Academic Project
+**Project Type:** End-Semester Academic Project (3rd Semester)
 
 **Institution:** CMR University
 
