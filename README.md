@@ -164,6 +164,19 @@ The application has been tested for:
 
 ---
 
+
+
+## 👨‍💻 Made By
+
+**Sathvik Talabathula**
+
+B.Tech – Computer Science and Engineering (AI & ML)
+CMR University
+
+**GitHub:** [@sathviktrd76](https://github.com/sathviktrd76)
+
+---
+
 <p align="center">
   <strong>PantryPal – Your Kitchen, Intelligently Organised. 🌿</strong>
 </p>
