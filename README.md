@@ -159,7 +159,9 @@ The application has been tested for:
 ## 👨‍💻 Project Information
 
 **Project:** PantryPal – Smart Pantry Management System
+
 **Domain:** Java Application Development
+
 **Repository:** [github.com/sathviktrd76/PantryPal](https://github.com/sathviktrd76/PantryPal)
 
 ---
