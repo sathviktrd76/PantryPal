@@ -104,32 +104,33 @@ Explore the different interfaces and functionalities of PantryPal.
 ### 1. JavaFX Dashboard
 
 <p align="center">
-  <img src="pantrypal dashboard.png" alt="PantryPal JavaFX Dashboard" width="850">
+  <img src="screenshots/dashboard.png" alt="PantryPal JavaFX Dashboard" width="850">
 </p>
 
 ### 2. Pantry Management
 
 <p align="center">
-  <img src="pantrypal pantry management.png" alt="Pantry Management" width="850">
+  <img src="screenshots/pantry.png" alt="Pantry Management" width="850">
 </p>
 
 ### 3. Shopping List
 
 <p align="center">
-  <img src="pantrypal shoppinglist.png" alt="PantryPal Shopping List" width="850">
+  <img src="screenshots/shopping-list.png" alt="PantryPal Shopping List" width="850">
 </p>
 
 ### 4. Recipe Suggestions
 
 <p align="center">
-  <img src="pantrypal recipes.png" alt="PantryPal Recipe Suggestions" width="850">
+  <img src="screenshots/recipes.png" alt="PantryPal Recipe Suggestions" width="850">
 </p>
 
 ### 5. Java Swing Interface
 
 <p align="center">
-  <img src="pantrypal swing interface.png" alt="PantryPal Java Swing Interface" width="850">
+  <img src="screenshots/swing-interface.png" alt="PantryPal Java Swing Interface" width="850">
 </p>
+
 
 ---
 
