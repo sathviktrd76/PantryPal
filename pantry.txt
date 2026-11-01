@@ -2,3 +2,10 @@
 2,Tomato,Vegetables,3.0,pieces,2026-11-18,3.0
 3,Onion,Vegetables,5.0,pieces,2026-11-13,3.0
 4,Butter,Dairy,2.0,packs,2026-11-11,1.0
+5,Potato,Vegetables,5.0,pieces,2026-11-20,8.0
+6,Apple,Fruit,6.0,pieces,2026-11-27,8.0
+7,Carrot,Vegetable,4.0,pieces,2026-11-20,3.0
+8,Peas,Vegetable,4.0,kg,2026-11-20,3.0
+9,Bread,Grocery,4.0,packets,2026-11-12,3.0
+10,Egg,Dairy,5.0,pieces,2026-11-12,4.0
+11,Oil,Grocery,2.0,litres,2026-11-12,1.0

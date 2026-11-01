@@ -2,8 +2,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class SwingMain extends JFrame {
+
+    private static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private PantryManager pantryManager;
     private ShoppingListManager shoppingManager;
@@ -157,23 +162,42 @@ public class SwingMain extends JFrame {
     private void addPantryItem() {
 
         try {
-            String name = JOptionPane.showInputDialog(this, "Enter item name:");
+
+            String name = JOptionPane.showInputDialog(
+                    this, "Enter item name:");
+
             if (name == null || name.trim().isEmpty()) return;
 
-            String category = JOptionPane.showInputDialog(this, "Enter category:");
+            String category = JOptionPane.showInputDialog(
+                    this, "Enter category:");
+
             if (category == null || category.trim().isEmpty()) return;
 
             double quantity = Double.parseDouble(
                     JOptionPane.showInputDialog(this, "Enter quantity:"));
 
-            String unit = JOptionPane.showInputDialog(this, "Enter unit (kg, litre, pieces):");
+            String unit = JOptionPane.showInputDialog(
+                    this, "Enter unit (kg, litre, pieces):");
+
             if (unit == null || unit.trim().isEmpty()) return;
 
+            String expiryInput = JOptionPane.showInputDialog(
+                    this, "Enter expiry date (DD-MM-YYYY):");
+
+            if (expiryInput == null || expiryInput.trim().isEmpty()) return;
+
             LocalDate expiryDate = LocalDate.parse(
-                    JOptionPane.showInputDialog(this, "Enter expiry date (YYYY-MM-DD):"));
+                    expiryInput.trim(), DATE_FORMATTER);
 
             double minimumStock = Double.parseDouble(
-                    JOptionPane.showInputDialog(this, "Enter minimum stock level:"));
+                    JOptionPane.showInputDialog(
+                            this, "Enter minimum stock level:"));
+
+            if (quantity < 0 || minimumStock < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Quantity and minimum stock cannot be negative.");
+                return;
+            }
 
             int newId = pantryManager.getAllItems().stream()
                     .mapToInt(PantryItem::getId)
@@ -187,14 +211,23 @@ public class SwingMain extends JFrame {
 
             pantryManager.addItem(item);
 
-        fileManager.savePantry(pantryManager.getAllItems());
-        refreshTable();
+            fileManager.savePantry(pantryManager.getAllItems());
 
-        JOptionPane.showMessageDialog(this, "Item added successfully!");
+            refreshTable();
 
-        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                    this, "Item added successfully!");
+
+        } catch (DateTimeParseException ex) {
+
             JOptionPane.showMessageDialog(this,
-                    "Invalid input. Please check the values and date format.");
+                    "Invalid date. Please use DD-MM-YYYY format.");
+
+        } catch (NumberFormatException ex) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Please enter valid numeric values.");
+
         }
     }
 
@@ -203,16 +236,21 @@ public class SwingMain extends JFrame {
         int selectedRow = pantryTable.getSelectedRow();
 
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an item.");
+            JOptionPane.showMessageDialog(this,
+                    "Please select an item.");
             return;
         }
 
         int id = (int) tableModel.getValueAt(selectedRow, 0);
 
         if (pantryManager.deleteItem(id)) {
+
             fileManager.savePantry(pantryManager.getAllItems());
+
             refreshTable();
-            JOptionPane.showMessageDialog(this, "Item deleted successfully!");
+
+            JOptionPane.showMessageDialog(
+                    this, "Item deleted successfully!");
         }
     }
 
@@ -221,13 +259,16 @@ public class SwingMain extends JFrame {
         tableModel.setRowCount(0);
 
         for (PantryItem item : pantryManager.getAllItems()) {
+
             tableModel.addRow(new Object[]{
                     item.getId(),
                     item.getName(),
                     item.getCategory(),
                     item.getQuantity(),
                     item.getUnit(),
-                    item.getExpiryDate(),
+                    item.getExpiryDate() == null
+                            ? ""
+                            : DATE_FORMATTER.format(item.getExpiryDate()),
                     item.getStatus()
             });
         }
@@ -250,6 +291,7 @@ public class SwingMain extends JFrame {
         JButton refreshButton = new JButton("Refresh Shopping List");
 
         refreshButton.addActionListener(e -> {
+
             listModel.clear();
 
             for (ShoppingListItem item : shoppingManager.getAllItems()) {

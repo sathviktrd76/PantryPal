@@ -1,3 +1,4 @@
+import javafx.util.StringConverter;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -5,10 +6,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class DashboardController {
+
+    private static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     // Navigation sections
     @FXML private VBox dashboardSection;
@@ -81,6 +86,8 @@ public class DashboardController {
         shoppingManager = new ShoppingListManager();
         recipeService = new RecipeSuggestionService();
 
+        configureExpiryDatePicker();
+
         // Load saved pantry items
         for (PantryItem item : fileManager.loadPantry()) {
             pantryManager.addItem(item);
@@ -91,6 +98,30 @@ public class DashboardController {
         refreshDashboard();
         refreshPantry();
         refreshShoppingList();
+    }
+
+    // Configure DD-MM-YYYY date input
+    private void configureExpiryDatePicker() {
+
+        expiryDatePicker.setConverter(new StringConverter<LocalDate>() {
+
+            @Override
+            public String toString(LocalDate date) {
+                return date == null ? "" : DATE_FORMATTER.format(date);
+            }
+
+            @Override
+            public LocalDate fromString(String date) {
+
+                if (date == null || date.trim().isEmpty()) {
+                    return null;
+                }
+
+                return LocalDate.parse(date.trim(), DATE_FORMATTER);
+            }
+        });
+
+        expiryDatePicker.setPromptText("DD-MM-YYYY");
     }
 
     // Configure table columns
@@ -113,8 +144,8 @@ public class DashboardController {
 
         statusColumn.setCellValueFactory(
                 new PropertyValueFactory<>("status"));
-                configureStatusColumn(statusColumn);
 
+        configureStatusColumn(statusColumn);
 
         manageIdColumn.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
@@ -134,10 +165,24 @@ public class DashboardController {
         expiryColumn.setCellValueFactory(
                 new PropertyValueFactory<>("expiryDate"));
 
+        // Display expiry dates in DD-MM-YYYY format
+        expiryColumn.setCellFactory(column ->
+                new TableCell<PantryItem, LocalDate>() {
+
+            @Override
+            protected void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+
+                setText(empty || date == null
+                        ? null
+                        : DATE_FORMATTER.format(date));
+            }
+        });
+
         manageStatusColumn.setCellValueFactory(
                 new PropertyValueFactory<>("status"));
-                configureStatusColumn(manageStatusColumn);
 
+        configureStatusColumn(manageStatusColumn);
 
         shoppingIdColumn.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
@@ -152,42 +197,34 @@ public class DashboardController {
                 new PropertyValueFactory<>("unit"));
 
         purchasedColumn.setCellValueFactory(
-        new PropertyValueFactory<>("purchased"));
+                new PropertyValueFactory<>("purchased"));
 
-purchasedColumn.setCellFactory(column ->
-        new TableCell<ShoppingListItem, Boolean>() {
+        purchasedColumn.setCellFactory(column ->
+                new TableCell<ShoppingListItem, Boolean>() {
 
-    @Override
-    protected void updateItem(Boolean purchased, boolean empty) {
-        super.updateItem(purchased, empty);
+            @Override
+            protected void updateItem(Boolean purchased, boolean empty) {
+                super.updateItem(purchased, empty);
 
-        if (empty || purchased == null) {
-            setText(null);
-            setGraphic(null);
-        } else {
-            Label statusLabel = new Label(purchased ? "True" : "False");
-            statusLabel.setStyle(
-    purchased
-        ? "-fx-text-fill: #27864A; -fx-font-weight: bold;"
-        : "-fx-text-fill: #DC2626; -fx-font-weight: bold;"
-);
+                if (empty || purchased == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
 
-            if (purchased) {
-                statusLabel.setStyle(
-                    "-fx-text-fill: #27864A; -fx-font-weight: bold;"
-                );
-            } else {
-                statusLabel.setStyle(
-                    "-fx-text-fill: #DC2626; -fx-font-weight: bold;"
-                );
+                    Label statusLabel =
+                            new Label(purchased ? "True" : "False");
+
+                    statusLabel.setStyle(
+                            purchased
+                                    ? "-fx-text-fill: #27864A; -fx-font-weight: bold;"
+                                    : "-fx-text-fill: #DC2626; -fx-font-weight: bold;"
+                    );
+
+                    setText(null);
+                    setGraphic(statusLabel);
+                }
             }
-
-            setText(null);
-            setGraphic(statusLabel);
-        }
-    }
-});
-
+        });
 
         // Select pantry item to edit
         managementPantryTable.getSelectionModel()
@@ -195,12 +232,18 @@ purchasedColumn.setCellFactory(column ->
                 .addListener((observable, oldItem, selectedItem) -> {
 
                     if (selectedItem != null) {
+
                         itemNameField.setText(selectedItem.getName());
                         categoryField.setText(selectedItem.getCategory());
+
                         quantityField.setText(
                                 String.valueOf(selectedItem.getQuantity()));
+
                         unitField.setText(selectedItem.getUnit());
-                        expiryDatePicker.setValue(selectedItem.getExpiryDate());
+
+                        expiryDatePicker.setValue(
+                                selectedItem.getExpiryDate());
+
                         minimumStockField.setText(
                                 String.valueOf(
                                         selectedItem.getMinimumStockLevel()));
@@ -318,11 +361,14 @@ purchasedColumn.setCellFactory(column ->
             );
 
             pantryManager.addItem(item);
+
             fileManager.savePantry(pantryManager.getAllItems());
 
             clearPantryFields();
+
             managementPantryTable.refresh();
             pantryTable.refresh();
+
             refreshPantry();
             refreshDashboard();
 
@@ -330,80 +376,85 @@ purchasedColumn.setCellFactory(column ->
 
         } catch (NumberFormatException e) {
             showAlert("Please enter valid numeric values.");
+        } catch (java.time.format.DateTimeParseException e) {
+            showAlert("Please enter the expiry date in DD-MM-YYYY format.");
         }
     }
 
     @FXML
-        public void updatePantryItem() {
+    public void updatePantryItem() {
 
         PantryItem selected =
                 managementPantryTable.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
-                showAlert("Please select an item to update.");
-                return;
+            showAlert("Please select an item to update.");
+            return;
         }
 
         try {
 
-                String name = itemNameField.getText().trim();
-                String category = categoryField.getText().trim();
-                String unit = unitField.getText().trim();
+            String name = itemNameField.getText().trim();
+            String category = categoryField.getText().trim();
+            String unit = unitField.getText().trim();
 
-                if (name.isEmpty() || category.isEmpty() || unit.isEmpty()
-                        || quantityField.getText().trim().isEmpty()
-                        || minimumStockField.getText().trim().isEmpty()
-                        || expiryDatePicker.getValue() == null) {
+            if (name.isEmpty() || category.isEmpty() || unit.isEmpty()
+                    || quantityField.getText().trim().isEmpty()
+                    || minimumStockField.getText().trim().isEmpty()
+                    || expiryDatePicker.getValue() == null) {
 
                 showAlert("Please fill in all fields.");
                 return;
-                }
+            }
 
-                double quantity =
-                        Double.parseDouble(quantityField.getText().trim());
+            double quantity =
+                    Double.parseDouble(quantityField.getText().trim());
 
-                double minimumStock =
-                        Double.parseDouble(minimumStockField.getText().trim());
+            double minimumStock =
+                    Double.parseDouble(minimumStockField.getText().trim());
 
-                if (quantity < 0 || minimumStock < 0) {
-                showAlert("Quantity cannot be negative.");
+            if (quantity < 0 || minimumStock < 0) {
+                showAlert("Quantity and minimum stock cannot be negative.");
                 return;
-                }
+            }
 
-                PantryItem updatedItem = new PantryItem(
-                        selected.getId(),
-                        name,
-                        category,
-                        quantity,
-                        unit,
-                        expiryDatePicker.getValue(),
-                        minimumStock
-                );
+            PantryItem updatedItem = new PantryItem(
+                    selected.getId(),
+                    name,
+                    category,
+                    quantity,
+                    unit,
+                    expiryDatePicker.getValue(),
+                    minimumStock
+            );
 
-                boolean updated = pantryManager.updateItem(
-                        selected.getId(), updatedItem);
+            boolean updated = pantryManager.updateItem(
+                    selected.getId(), updatedItem);
 
-                if (updated) {
+            if (updated) {
 
                 fileManager.savePantry(pantryManager.getAllItems());
 
                 refreshPantry();
                 refreshDashboard();
+
                 managementPantryTable.refresh();
                 pantryTable.refresh();
+
                 clearPantryFields();
 
                 showMessage("Item updated successfully!");
 
-
-                } else {
+            } else {
                 showAlert("Unable to update the selected item.");
-                }
+            }
 
         } catch (NumberFormatException e) {
-                showAlert("Please enter valid numeric values.");
+            showAlert("Please enter valid numeric values.");
+        } catch (java.time.format.DateTimeParseException e) {
+            showAlert("Please enter the expiry date in DD-MM-YYYY format.");
         }
-        }
+    }
 
     @FXML
     public void deleteSelectedItem() {
@@ -422,6 +473,7 @@ purchasedColumn.setCellFactory(column ->
         fileManager.savePantry(pantryManager.getAllItems());
 
         clearPantryFields();
+
         refreshPantry();
         refreshDashboard();
 
@@ -451,7 +503,7 @@ purchasedColumn.setCellFactory(column ->
     }
 
     @FXML
-        public void refreshPantry() {
+    public void refreshPantry() {
 
         ArrayList<PantryItem> items = pantryManager.getAllItems();
 
@@ -460,7 +512,7 @@ purchasedColumn.setCellFactory(column ->
 
         pantryTable.setItems(
                 FXCollections.observableArrayList(items));
-        }
+    }
 
     @FXML
     public void clearPantryFields() {
@@ -536,26 +588,29 @@ purchasedColumn.setCellFactory(column ->
     }
 
     @FXML
-        public void markPurchased() {
+    public void markPurchased() {
 
         ShoppingListItem selected =
                 shoppingTable.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
-                showAlert("Please select a shopping item.");
-                return;
+            showAlert("Please select a shopping item.");
+            return;
         }
 
         boolean updated = shoppingManager.markAsPurchased(
                 selected.getId(), !selected.isPurchased());
 
         if (updated) {
-                refreshShoppingList();
-                showMessage("Shopping item status updated successfully!");
+
+            refreshShoppingList();
+
+            showMessage("Shopping item status updated successfully!");
+
         } else {
-                showAlert("Unable to update shopping item. Please try again.");
+            showAlert("Unable to update shopping item. Please try again.");
         }
-        }
+    }
 
     @FXML
     public void removeShoppingItem() {
@@ -580,6 +635,7 @@ purchasedColumn.setCellFactory(column ->
         shoppingTable.setItems(
                 FXCollections.observableArrayList(
                         shoppingManager.getAllItems()));
+
         shoppingTable.refresh();
     }
 
@@ -619,7 +675,7 @@ purchasedColumn.setCellFactory(column ->
         alert.showAndWait();
     }
 
-        // Configure colour-coded pantry statuses
+    // Configure colour-coded pantry statuses
     private void configureStatusColumn(
             TableColumn<PantryItem, String> column) {
 
@@ -642,6 +698,7 @@ purchasedColumn.setCellFactory(column ->
                 if (empty || status == null) {
                     setText(null);
                 } else {
+
                     setText(status);
 
                     switch (status.toLowerCase().trim()) {
@@ -649,8 +706,6 @@ purchasedColumn.setCellFactory(column ->
                         case "in stock":
                             getStyleClass().add("status-in-stock");
                             break;
-
-                        
 
                         case "low stock":
                             getStyleClass().add("status-low-stock");

@@ -51,6 +51,21 @@
     -fx-background-color: #315C42;
 }
 
+/* NAVIGATION ICONS */
+
+.nav-icon {
+    -fx-font-family: "Segoe UI Symbol";
+    -fx-font-size: 23px;
+    -fx-text-fill: #A8C99F;
+    -fx-min-width: 32px;
+    -fx-alignment: CENTER;
+}
+
+.nav-button:hover .nav-icon,
+.nav-button:focused .nav-icon {
+    -fx-text-fill: white;
+}
+
 /* PAGE HEADINGS */
 .page-title {
     -fx-font-size: 32px;
@@ -278,4 +293,40 @@
 .table-cell.purchased-false {
     -fx-text-fill: #DC2626 !important;
     -fx-font-weight: bold;
+}
+
+/* DASHBOARD STATISTIC ICONS */
+.stat-icon {
+    -fx-font-size: 25px;
+    -fx-min-width: 42px;
+    -fx-min-height: 42px;
+    -fx-pref-width: 42px;
+    -fx-pref-height: 42px;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 50%;
+}
+
+.icon-green {
+    -fx-background-color: #E2F1E5;
+}
+
+.icon-amber {
+    -fx-background-color: #FFF0D6;
+}
+
+.icon-red {
+    -fx-background-color: #FCE5E3;
+}
+
+.icon-purple {
+    -fx-background-color: #EEE7FA;
+}
+
+.icon-leaf {
+    -fx-background-color: #E4F2DF;
+}
+
+.icon-red-dot {
+    -fx-text-fill: #E53935;
+    -fx-background-color: #FCE5E3;
 }

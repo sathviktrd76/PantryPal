@@ -1,1 +1,4 @@
 1,Curd,2.0,packs,true
+2,Tomato,1.0,pieces,true
+3,Potato,3.0,pieces,true
+4,Apple,2.0,pieces,true

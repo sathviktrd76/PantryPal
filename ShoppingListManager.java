@@ -36,7 +36,7 @@ public class ShoppingListManager {
     }
 
     // Automatically add low-stock and out-of-stock pantry items
-    public void addLowStockItems(PantryManager pantryManager) {
+public void addLowStockItems(PantryManager pantryManager) {
 
     for (PantryItem pantryItem : pantryManager.getAllItems()) {
 
@@ -46,8 +46,9 @@ public class ShoppingListManager {
 
             for (ShoppingListItem shoppingItem : shoppingItems) {
 
-                if (shoppingItem.getName().equalsIgnoreCase(
-                        pantryItem.getName())) {
+                if (shoppingItem.getName().trim().equalsIgnoreCase(
+                        pantryItem.getName().trim())
+                        && !shoppingItem.isPurchased()) {
 
                     alreadyExists = true;
                     break;
