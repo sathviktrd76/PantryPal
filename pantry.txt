@@ -1,0 +1,4 @@
+1,Rice,Grains,3.0,kg,2026-11-11,2.0
+2,Tomato,Vegetables,3.0,pieces,2026-11-18,3.0
+3,Onion,Vegetables,5.0,pieces,2026-11-13,3.0
+4,Butter,Dairy,2.0,packs,2026-11-11,1.0

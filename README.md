@@ -1,127 +1,169 @@
-<div align="center">
+# 🌿 PantryPal – Smart Pantry Management System
 
-# 🥫 PantryPal
+<p align="center">
+  <img src="pantrypal-logo.png" alt="PantryPal Logo" width="130">
+</p>
 
-**A console-based pantry management application built with Java.**
+<h3 align="center">Your Kitchen, Intelligently Organised.</h3>
 
-</div>
-
-<br>
-
-<div align="center">
-
-![Java](https://img.shields.io/badge/Java-17%2B-orange?style=flat-square\&logo=openjdk)
-![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=flat-square)
-
-</div>
+<p align="center">
+  A Java-based application designed to simplify pantry management, monitor food expiry dates, organise shopping lists, and suggest recipes using available ingredients.
+</p>
 
 ---
 
-## 📌 About
+## 📌 About the Project
 
-PantryPal is a simple console-based application for managing pantry items.
+**PantryPal** is a Smart Pantry Management System developed using Java. It helps users manage kitchen inventory, monitor stock levels, track expiry dates, and organise grocery requirements through an interactive graphical interface.
 
-The project is built to apply Java fundamentals and Object-Oriented Programming concepts through a practical application while gradually introducing collections, exception handling, and file handling.
+The application provides two interfaces:
 
----
+* **JavaFX:** A modern dashboard with a Dark Forest Green theme.
+* **Java Swing:** An alternative interface for pantry and shopping list management.
 
-## ✨ Features
+Both interfaces use a shared backend and file-based storage.
 
-* Add pantry items
-* View all pantry items
-* Search items by ID or name
-* Update item details
-* Remove pantry items
-* Check low-stock items
-* Check expired and soon-to-expire items
-* Save pantry data to a file
-* Load pantry data from a file
-* Handle invalid input and application errors
+## ✨ Key Features
 
----
+* **Dashboard:** Overview of pantry inventory and stock information.
+* **Pantry Management:** Add, update, delete, and search pantry items.
+* **Stock Monitoring:** Identifies low-stock and out-of-stock items.
+* **Expiry Tracking:** Highlights expired and soon-to-expire ingredients.
+* **Shopping List:** Add, remove, and mark items as purchased.
+* **Recipe Suggestions:** Suggests predefined recipes based on available ingredients.
+* **Data Persistence:** Saves pantry and shopping list information using file handling.
 
-## 🛠️ Concepts
+## 🛠️ Technologies Used
 
-| Area                   | Concepts                                                              |
-| ---------------------- | --------------------------------------------------------------------- |
-| **Java Fundamentals**  | Variables, Data Types, Operators, Conditions, Loops, Methods, Strings |
-| **OOP**                | Classes, Objects, Constructors, Encapsulation                         |
-| **Collections**        | ArrayList, Generics, Iteration                                        |
-| **Exception Handling** | try-catch, finally, throw, throws, Custom Exceptions                  |
-| **File Handling**      | Reading, Writing, Data Persistence                                    |
-| **Date & Validation**  | LocalDate, Date Comparison, Input Validation                          |
+| Technology              | Purpose                         |
+| ----------------------- | ------------------------------- |
+| Java (JDK 26)           | Core application development    |
+| JavaFX 27.0.1           | Primary graphical interface     |
+| Java Swing              | Alternative graphical interface |
+| FXML                    | JavaFX layout design            |
+| CSS                     | Interface styling               |
+| Java File I/O           | Data storage and retrieval      |
+| ArrayList & Collections | Data management                 |
+| LocalDate               | Expiry date handling            |
+| Git & GitHub            | Version control                 |
+| VS Code                 | Development environment         |
 
-> OOP concepts such as inheritance, polymorphism, and abstraction are part of the learning scope and may be introduced where they fit naturally into the project.
+## 🏗️ System Architecture
 
----
+```text
+             PANTRYPAL
+                 |
+        -------------------
+        |                 |
+      JavaFX            Swing
+        |                 |
+        -------------------
+                 |
+           Shared Backend
+                 |
+     ---------------------------
+     |             |           |
+PantryManager  ShoppingList  RecipeSuggestion
+               Manager      Service
+     |             |           |
+     ---------------------------
+                 |
+             FileManager
+                 |
+       ---------------------
+       |                   |
+   pantry.txt       shopping_list.txt
+```
 
 ## 📂 Project Structure
 
 ```text
 PantryPal/
-│
-├── src/
-│   ├── Main.java
-│   ├── Pantry.java
-│   ├── PantryItem.java
-│   └── ItemNotFoundException.java
-│
-├── data/
-│   └── pantry.txt
-│
+├── Main.java
+├── PantryItem.java
+├── ShoppingListItem.java
+├── PantryManager.java
+├── ShoppingListManager.java
+├── RecipeSuggestionService.java
+├── FileManager.java
+├── SwingMain.java
+├── JavaFXMain.java
+├── DashboardController.java
+├── dashboard.fxml
+├── styles.css
+├── pantrypal-logo.png
+├── pantry.txt
+├── shopping_list.txt
 └── README.md
 ```
 
-The structure may evolve as the project develops.
+## ⚙️ Getting Started
 
----
+### Prerequisites
 
-## ▶️ How to Run
+* Java Development Kit (JDK)
+* JavaFX SDK 27.0.1
+* VS Code or IntelliJ IDEA
 
-### Clone the repository
+### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/sathviktrd76/PantryPal.git
+cd PantryPal
 ```
 
-### Open the project
+### Run the JavaFX Application
 
-Open the project in an IDE such as IntelliJ IDEA, Eclipse, or VS Code.
+Compile:
 
-### Run the application
+```bash
+javac --module-path "PATH_TO_JAVAFX_LIB" --add-modules javafx.controls,javafx.fxml *.java
+```
 
 Run:
 
-```text
-Main.java
+```bash
+java --module-path "PATH_TO_JAVAFX_LIB" --add-modules javafx.controls,javafx.fxml JavaFXMain
 ```
 
-The application can then be operated through the console menu.
+Replace `PATH_TO_JAVAFX_LIB` with the location of your JavaFX SDK's `lib` directory.
+
+To launch the Swing interface:
+
+```bash
+java SwingMain
+```
+
+## 🧪 Testing
+
+The application has been tested for:
+
+* Pantry item addition, updating, deletion, and searching.
+* Stock-level and expiry-status identification.
+* Shopping list management and purchase tracking.
+* Recipe suggestions based on available ingredients.
+* Data persistence across application sessions.
+* Sequential data access through both interfaces.
+
+## 🔮 Future Enhancements
+
+* Database integration.
+* Barcode scanning.
+* Expiry notifications.
+* Advanced recipe recommendations.
+* Cloud-based data synchronisation.
+* Integration with online grocery platforms.
 
 ---
 
-## 📈 Development Progress
+## 👨‍💻 Project Information
 
-PantryPal is being developed incrementally.
-
-| Stage | Focus                                |
-| ----- | ------------------------------------ |
-| **1** | Java Fundamentals & Project Setup    |
-| **2** | OOP & ArrayList                      |
-| **3** | CRUD Operations & Exception Handling |
-| **4** | File Handling & Validation           |
-| **5** | Testing & Final Improvements         |
+**Project:** PantryPal – Smart Pantry Management System
+**Domain:** Java Application Development
+**Repository:** [github.com/sathviktrd76/PantryPal](https://github.com/sathviktrd76/PantryPal)
 
 ---
 
-## 🔮 Future Plans
-
-A future version of PantryPal may include a JavaFX-based desktop interface and additional functionality.
-
----
-
-<div align="center">
-
-**Java • OOP • Collections • File Handling**
-
-</div>
+<p align="center">
+  <strong>PantryPal – Your Kitchen, Intelligently Organised. 🌿</strong>
+</p>

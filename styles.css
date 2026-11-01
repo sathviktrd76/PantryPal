@@ -1,0 +1,281 @@
+/* =========================================
+   PANTRYPAL - DARK FOREST GREEN THEME
+   ========================================= */
+
+/* ROOT */
+.root {
+    -fx-background-color: #F4F5EF;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+}
+
+/* SIDEBAR */
+.sidebar {
+    -fx-background-color: #183D2B;
+}
+
+.app-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.app-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #C8D9C5;
+    -fx-letter-spacing: 2px;
+}
+
+.sidebar-footer {
+    -fx-text-fill: #C8D9C5;
+    -fx-font-size: 12px;
+}
+
+/* NAVIGATION */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EDF3EC;
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 13px 15px;
+    -fx-background-radius: 9px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #315C42;
+}
+
+.nav-button:focused {
+    -fx-background-color: #315C42;
+}
+
+/* PAGE HEADINGS */
+.page-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #203B2B;
+}
+
+.page-description {
+    -fx-font-size: 15px;
+    -fx-text-fill: #78847A;
+}
+
+.section-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #28543A;
+}
+
+/* DASHBOARD CARDS */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+    -fx-pref-width: 155px;
+    -fx-effect: dropshadow(gaussian, #183D2B18, 12, 0, 0, 4);
+}
+
+.stat-card Label {
+    -fx-text-fill: #78847A;
+    -fx-font-size: 14px;
+}
+
+.stat-number {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #28543A;
+}
+
+/* TABLES */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E1E8DF;
+    -fx-border-radius: 12px;
+    -fx-padding: 2px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #E7EEE5;
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 44px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #28543A;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.table-row-cell {
+    -fx-cell-size: 44px;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #F0F2ED transparent;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #F0F5EF;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #DCE9DC;
+}
+
+.table-cell {
+    -fx-text-fill: #35443A;
+    -fx-font-size: 14px;
+}
+
+/* INPUT FIELDS */
+.text-field,
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #D5E1D4;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-size: 15px;
+    -fx-text-fill: #35443A;
+}
+
+.text-field:focused,
+.date-picker:focused {
+    -fx-border-color: #527C5C;
+    -fx-border-width: 1.5px;
+}
+
+.text-field:hover,
+.date-picker:hover {
+    -fx-border-color: #91AD91;
+}
+
+/* PRIMARY BUTTONS */
+.action-button {
+    -fx-background-color: #28543A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 11px 18px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #376B49;
+}
+
+.action-button:pressed {
+    -fx-background-color: #183D2B;
+}
+
+/* DELETE BUTTON */
+.delete-button {
+    -fx-background-color: #C87568;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 11px 18px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #AD5D52;
+}
+
+/* RECIPE LIST */
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E1E8DF;
+    -fx-border-radius: 12px;
+}
+
+.list-cell {
+    -fx-padding: 16px;
+    -fx-font-size: 16px;
+    -fx-background-color: white;
+    -fx-text-fill: #35443A;
+}
+
+.list-cell:hover {
+    -fx-background-color: #F0F5EF;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #DCE9DC;
+    -fx-text-fill: #203B2B;
+}
+
+/* SEPARATOR */
+.separator .line {
+    -fx-border-color: #D5E1D4;
+}
+
+/* SCROLLBARS */
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #B6CBB5;
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #789B7B;
+}
+
+/* PANTRY STATUS COLOURS */
+
+.status-available {
+    -fx-text-fill: #0D9488;
+    -fx-font-weight: bold;
+}
+
+.status-in-stock {
+    -fx-text-fill: #27864A;
+    -fx-font-weight: bold;
+}
+
+.status-low-stock {
+    -fx-text-fill: #D97706;
+    -fx-font-weight: bold;
+}
+
+.status-out-of-stock {
+    -fx-text-fill: #DC2626;
+    -fx-font-weight: bold;
+}
+
+.status-expired {
+    -fx-text-fill: #7F1D1D;
+    -fx-font-weight: bold;
+}
+
+.status-expiring-soon {
+    -fx-text-fill: #9333EA;
+    -fx-font-weight: bold;
+}
+
+
+/* SHOPPING LIST PURCHASED STATUS */
+
+.table-cell.purchased-true {
+    -fx-text-fill: #27864A !important;
+    -fx-font-weight: bold;
+}
+
+.table-cell.purchased-false {
+    -fx-text-fill: #DC2626 !important;
+    -fx-font-weight: bold;
+}
