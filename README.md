@@ -170,7 +170,7 @@ The application has been tested for:
 
 **Sathvik Talabathula**
 
-B.Tech – Computer Science and Engineering (AI & ML)
+B.Tech – Computer Science and Engineering (AI & ML) | 
 CMR University
 
 **GitHub:** [@sathviktrd76](https://github.com/sathviktrd76)
